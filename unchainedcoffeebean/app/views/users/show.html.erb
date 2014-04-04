@@ -1,0 +1,122 @@
+
+<div class='container-fluid'>
+	
+	<div class='top'>
+		<div class='row task'>
+			<div class='col-md-6 task-left'>
+				<ul>
+					<li class='inactive'><a href="/">Home</a></li>
+					<li class='inactive'><a href="/shops/new">Add</a></li>
+				</ul>
+			</div>
+			<% if session[:user_id] %>
+				<div class='col-md-6 task-right'>
+					<ul>
+						<li id='user_info' class='inactive'>Welcome, <%= User.find(session[:user_id]).first_name %></li>
+						<% if @current_user.id == @showuser.id %>
+							<%= link_to( "<li class='active'>My Profile</li>".html_safe, user_path(session[:user_id])) %>
+						<% else %>
+							<%= link_to( "<li class='inactive'>My Profile</li>".html_safe, user_path(session[:user_id])) %>
+						<% end %>
+
+						<li class='inactive'><a href="/logout">Logout</a>
+					</ul>
+				</div>
+			<% else %>
+				<%= render "partials/notloggedin" %>
+			<% end %>
+		</div>
+	</div>
+
+<div class='body'>
+	<div class='row'>
+
+		<div class='col-md-6'>
+			<div class='profile_info'>
+				<div class='row'>
+					<div class='col-md-6'>
+						<img class='profile_pic' src="<%= @showuser.avatar %>">
+					</div>
+					<div class='col-md-6'>
+						<h1 class='name'><%= @showuser.first_name+' '+@showuser.last_name %></h1>
+						<p>Birthday:</p>
+						<% if @showuser.birthdate %>
+							<h3><%= @showuser.birthdate.to_time.strftime('%b %e, %Y') %></h3>
+						<% end %>
+							<p>Location:</p>
+						<% if @showuser.address %>
+							<h3><%= @showuser.address.address %></h3>
+						<% end %>
+						<% if @showuser.bio %>
+							<p><b>Bio:</b></p>
+							<p><%= @showuser.bio %></p>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class='col-md-6'>
+			<div class='all_favorites'>
+				<div class='row'>
+					<h3>Favorites</h3>
+					<div class='col-md-12 favorites'>
+						<table class='table'>
+							<% if @showuser.favorites %>
+								<% @showuser.favorites.each do |favorite| %>
+								<tr>
+									<td><h4><%= link_to favorite.shop.name, shop_path(favorite.shop_id) %></h4></td>
+									<td><h4><%= favorite.shop.address.address %></h4></td>
+								</tr>
+								<% end %>
+							<% end %>
+
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class='row all_user_activities'>
+		<h2><%= @showuser.first_name %>'s Recent Activity</h2>
+		
+		<div>
+			<div class='user_activities row'>
+				<% @showuser.activities.reverse.each do |activity| %>
+					<div class='user_activity row'>
+						<div class='col-md-3'><%= activity.created_at.to_time.strftime('%B %e at %l:%M %p') %>
+						</div>
+						<div class='col-md-9'>
+							<%= @showuser.first_name %> added <a href="<%= shop_path(activity.shop_id) %>"><%= activity.shop.name %></a> 
+							<% if activity.kind == 'favorite' %>
+							to his favorites.
+							<% elsif activity.kind == 'newshop' %>
+							to our database.
+							<% end %>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Registration Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    	<%= render "partials/register" %>
+    </div>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    	<%= render "partials/login" %>
+    </div>
+  </div>
+</div>
+

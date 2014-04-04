@@ -1,0 +1,27 @@
+.modal-content {
+	background-color: #EAE8DB;
+	margin: 10px;
+}
+
+.modal-header {
+	padding-bottom: 0px;
+	margin: 20px;
+
+}
+
+.modal-body {
+	margin: 20px;
+	border-top: 2px dashed #333333; 
+	border-bottom: 2px dashed #333333; 
+}
+
+.register_error_div, .login_error_div {
+	display: none;
+	background-color: pink;
+	color: red;
+	float: left;
+	border-radius: 10px;
+	padding: 5px 20px;
+	text-align: left;
+	border: 1px solid red;
+}

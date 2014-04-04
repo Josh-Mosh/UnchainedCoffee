@@ -1,0 +1,93 @@
+
+.shop_info {
+	margin: 20px;
+	border: 1px solid silver;
+	padding: 20px;
+	border-radius: 10px;
+	background-color: #EAE8DB;
+}
+
+	.shop_info h1 {
+		margin-bottom: 0px;
+	}
+
+	.shop_info h4 {
+		color: #555555;
+	}
+
+	span {
+		font-size: 18px;
+		font-weight: bold;
+	}
+
+	.name {
+		margin-top: 0px;
+	}
+
+	.shop_pics img {
+		max-height: 120px;
+		max-width: 150px;
+	}
+
+	.map3 {
+		height: 300px;
+		width: 100%;
+	}
+
+.add_favorite {
+	margin: 20px 50px;
+	border: 1px solid silver;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: #EAE8DB
+}
+	
+	.add_favorite h3 {
+		margin-top: 5px;
+	}
+
+	.add_favorite .col-md-4 {
+		text-align: center;
+	}
+
+	.favorite_button {
+		margin-top: 10px;
+	}
+
+.all_comments {
+	margin: 20px;
+	border: 1px solid silver;
+	padding: 20px;
+	border-radius: 10px;
+	background-color: #EAE8DB;
+	height: 600px;
+}
+
+	.comment_form {
+		margin-left: 50px;
+	}
+
+	.comment_form textarea {
+		width: 80%;
+		height: 75px;
+	}
+
+	.comments {
+		height: 400px;
+		overflow: scroll;
+	}
+
+	.all_comments h2 {
+		margin-top: 0px; 
+	}
+
+	.profile_thumbnail {
+		max-width: 70px;
+		max-height: 70px;
+	}
+
+	.comment {
+		margin: 10px;
+		padding: 10px 0px;
+		border-bottom: 2px dashed #444444;
+	}

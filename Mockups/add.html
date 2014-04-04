@@ -1,0 +1,209 @@
+<!doctype HTML>
+
+<html>
+<head>
+	<title>Add</title>
+		<script type="text/javascript" src='js/jquery.min.js'></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<script type="text/javascript" src='js/bootstrap.min.js'></script>
+	<script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false">
+    </script>
+	<link rel="stylesheet" type="text/css" href="css/add.css">
+	<script type="text/javascript" src='js/map2.js'></script>
+
+</head>
+<body>
+
+	<div class='header'>
+		<div class='row'>
+			<div class='col-md-3 header-left'>
+				<img src="img/LOGO.png">
+			</div>
+		</div>	
+	</div>
+
+	<div class='container-fluid top'>
+		<div class='row task'>
+			<div class='col-md-3 task-left'>
+				<ul>
+					<li class='inactive'><a href="index.html">Home</a></li>
+					<li class='active'><a href="#">Add</a></li>
+				</ul>
+			</div>
+			<div class='col-md-5 col-md-offset-4 task-right'>
+				<ul>
+					<li id='user_info' class='active'>Welcome, Mosh</li>
+					<li class='inactive'><a href='profile.html' class='profile'>Profile</a></li>
+				</ul>
+			</div>
+		</div>
+
+
+	<div class='container-fluid body'>
+
+		<div class='row add-form-top'>
+			<div class='col-md-6'>
+				<h3>Manually Add A Coffee Shop:</h3>
+				<div class='add-form' >
+					<form>
+					<h4>Name of Coffee Shop: </h4>
+					<div class='form-group row'>
+						<div class='col-md-offset-1 col-md-5'>
+							<input type='text' name='name' placeholder='Name' class='form-control'>
+						</div>
+					</div>
+
+					<div class='address row'>
+						<h4>Address:</h4>
+						<div class='form-group row'>
+							<label for='street' class='col-md-2 control-label'>Street: </label>
+							<div class='col-md-5'>
+								<input type='text' name='street' placeholder='123 NW 50th Street' class='form-control'>
+							</div>
+						</div>
+						<div class='form-group row'>
+							<label for='city' class='col-md-2 control-label'>City: </label>
+							<div class='col-md-5'>
+								<input type='text' name='city' placeholder='Seatttle' class='form-control'>
+							</div>
+						</div>
+						<div class='form-group row'>
+							<label for='State' class='col-md-2 control-label'>State: </label>
+							<div class='col-md-2'>
+								<select name='state' class='form-control'>
+									<option>AL</option>
+									<option>AK</option>
+									<option>AS</option>
+								</select>
+							</div>
+						</div>
+						<div class='form-group row'>
+							<label for='zip' class='col-md-2 control-label'>Zip: </label>
+							<div class='col-md-4'>
+								<input type='text' name='zip' placeholder='23413' class='form-control'>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class='col-md-6'>
+				<h3>Find Shop With Map:</h3>
+				<div class='form-group'>
+					<div id='map-canvas2' class='map2'>
+
+					</div>
+				</div>	
+			</div>
+		</div>
+			
+			<h3>Other Options:</h3>
+			<div class='options row add-form-bottom'>
+				<div class='col-md-6'>
+
+					<div class='categories'>
+						<h4>Check All that apply</h4>
+						<div class='row'>
+							<div class='col-md-3'>
+								<div class='form-group'>
+									<input type='checkbox' name='option' value='tea'> Tea</input>
+								</div>
+								<div class='form-group'>
+									<input type='checkbox' name='option' value='snacks'> Snacks</input>
+								</div>
+								<div class='form-group'>
+									<input type='checkbox' name='option' value='pastries'> Pastries</input>
+								</div>
+								<div class='form-group'>
+									<input type='checkbox' name='option' value='desserts'> Desserts</input>
+								</div>
+							</div>
+							<div class='col-md-3'>
+								<div class='form-group'>
+									<input type='checkbox' name='option' value='full_meals'> Full Meals</input>
+								</div>
+								<div class='form-group'>
+									<input type='checkbox' name='option' value='kid_friendly'> Kid Friendly</input>
+								</div>
+								<div class='form-group'>
+									<input type='checkbox' name='option' value='beer_wine'> Beer/Wine</input>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class='pricing'>
+						<h4>Pricing</h4>
+						<div class='row'>
+							<div class='col-md-3'>
+								<div class='form-group'>
+									<input type='radio' name='price' value='$'> $1 - $10
+								</div>
+								<div class='form-group'>
+									<input type='radio' name='price' value='$$'> $10 - $20
+								</div>
+								<div class='form-group'>
+									<input type='radio' name='price' value='$$$'> $20 - $40
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class='col-md-6'>
+					<div class='description'>
+						<h4>Descripton</h4>
+						<div class='row'>
+							<div class='col-md-12'>
+								<textarea name='description' placeholder='Short Shop Description' class='form-control'></textarea>
+							</div>
+						</div>
+					</div>
+
+					<div class='images'>
+						<h4>Upload Some images of this shop</h4>
+						<div class='row'>
+							<div class='col-md-12'>
+								<img src="img/thumbnail-preview.png">
+								<img src="img/thumbnail-preview.png">
+								<img src="img/thumbnail-preview.png">
+								<input type='file' name='image'>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</form>
+
+		<div class='footer'>
+			<input type='submit' value='Add New Shop!' class='btn btn-lg btn-warning'>
+			<a href="index.html" class='btn btn-lg btn-default'>Back</a>
+		</div>
+
+	</div>
+
+	<!-- Registration Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    	
+    </div>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    	
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

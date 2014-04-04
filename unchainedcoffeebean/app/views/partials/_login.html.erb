@@ -1,0 +1,34 @@
+
+<!doctype html>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$('.registration').click(function(){
+			$('#loginModal').modal('hide');
+			$('#myModal').modal({remote: 'register.html'});
+		})
+
+	})
+</script>
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Login</h4>
+    <p>Not a member? <button class='registration btn btn-link'>Register</button></p>
+</div>
+<div class="modal-body">
+	<%= simple_form_for :session, url: {action: 'create', controller: 'sessions'} do |f| %>
+		<div class='form-group'>
+			<%= f.input :email, input_html: {class: 'form-control', placeholder: "Email"}, autofocus: true %>
+		</div>
+		<div class='form-group'>
+			<%= f.input :password, input_html: {class: 'form-control', placeholder: "Your Password"} %>
+		</div>
+</div>
+<div class="modal-footer login_footer">
+	<div class='login_error_div'></div>
+    <button type="button" class="btn btn-default cancel" data-dismiss="modal">Cancel</button>
+    <%= f.button :submit, value: "Login", class: 'btn btn-primary' %>
+    <% end %>
+</div>

@@ -1,0 +1,57 @@
+
+
+.profile_info {
+	margin: 20px 10px;
+	border: 1px solid silver;
+	padding: 20px;
+	border-radius: 10px;
+	background-color: #EAE8DB;
+}
+
+	.profile_info p {
+		color: #444444;
+	}
+
+	.name, .profile_info h3 {
+		margin-top: 0px;
+	}
+
+	.profile_pic {
+		max-width: 200px;
+		max-height: 300px;
+	}
+
+.recent_activity {
+	margin: 5px;
+	border: 1px solid silver;
+	padding: 20px;
+	border-radius: 10px;
+	background-color: #EAE8DB;
+}
+
+ 	.recent_activity h2 {
+ 		margin: 0 15px;
+ 	}
+
+	 .activities {
+	 	height: 200px;
+	 	overflow: scroll;
+	 }
+
+.all_favorites {
+	margin: 20px 10px;
+	border: 1px solid silver;
+	padding: 20px;
+	border-radius: 10px;
+	background-color: #EAE8DB;
+
+}
+
+	.all_favorites h3 {
+		margin: 0 15px;
+	}
+
+	.favorites {
+		height: 175px;
+		overflow: scroll;
+	}

@@ -1,0 +1,160 @@
+<!doctype HTML>
+
+<div class='header'>
+	<div class='header-left'>
+		<img src="/assets/LOGO.png">
+	</div>
+</div>
+
+<div class='container-fluid'>
+	<div class='top'>
+		<div class='row task'>
+			<div class='col-md-6 task-left'>
+				<ul>
+					<li class='inactive'><a href="/">Home</a></li>
+					<li class='inactive'><a href="/shops/new">Add</a></li>
+					<li class='active'><a href="#">More Info</a></li>
+				</ul>
+			</div>
+			<% if session[:user_id] %>
+				<%= render "partials/loggedin" %>
+			<% else %>
+				<%= render "partials/notloggedin" %>
+			<% end %>
+		</div>
+	</div>
+
+	<div class='body'>
+
+		<div class='row shop_info'>
+
+			<div class='col-md-8'>
+
+				<h1 class='name'><%= @showshop.name %></h1>
+				<div class='row shop_pics'>
+					<% if @showshop.external_images.any? %>
+						<% @showshop.external_images.last(3).each do |image| %>
+							<img src="<%= image.url %>">
+						<% end %>
+					<% else %>
+						<img src="<%= @showshop.photo %>">
+					<% end %>
+				</div>
+				<h5><%= @showshop.description %></h5>
+				<p>Added on: <span><%= @showshop.created_at.to_time.strftime('%B %e at %l:%M %p %Z') %></span> by 
+					<% if @showshop.user %>
+					<span><%= link_to @showshop.user.first_name + ' ' + @showshop.user.last_name, user_path(@showshop.user.id) %></span>
+					<% else %>
+						User
+					<% end %>
+				</p>
+				<img src="/assets/rating.png">
+				<h4>502 South Street, Seattle, WA. 32352</h4>
+				<% if @showshop.website.start_with?("http")
+					website = @showshop.website
+				else
+					website = 'http://'+@showshop.website
+				end %>
+				<%= link_to(@showshop.website, website) %>
+			</div>
+			<div class='col-md-4'>
+				<h3>View on map</h3>
+				<div id='map-canvas3' class='map3'>
+
+				</div>
+			</div>
+		 </div>
+
+		 <div class='add_favorite row'>
+			<div class='add-label col-md-8'>
+				<h3>Want to add this shop to your list of favorites?</h3>
+				<h6>Become a member to keep a favorites list: <a href='#' class='registration'>Register</a></h6>
+			</div>
+			<div class=' col-md-4'>
+				<% if session[:user_id] %>
+					<% favarr = [] %>
+					<% User.find(session[:user_id]).favorites.each do |favorite| %>
+						<% favarr.push(favorite.shop_id) %>
+					<% end %>
+					<%  if favarr.include?(@showshop.id) %>
+						<div>
+							<%= simple_form_for @favorite, url: {action: 'destroy', controller: 'favorites'}, html: {id: 'delete_favorite'}, method: :delete do |f| %>
+								<%= f.input :shop_id, as: :hidden, input_html: {value: @showshop.id} %>
+								<%= f.button :submit, value: 'Remove from Favorites', class: 'btn btn-danger delete_fav' %>
+							<% end %>
+						</div>
+						<div style='display:none'>
+							<%= simple_form_for @favorite, url: {action: 'create', controller: 'favorites'} do |f| %>
+								<%= f.input :shop_id, as: :hidden, input_html: {value: @showshop.id} %>
+								<%= f.button :submit, value: 'Add to Favorites', class: 'btn btn-success new_fav' %>
+							<% end %>
+						</div>
+					<% else %>
+						<div style='display:none'>
+							<%= simple_form_for @favorite, url: {action: 'destroy', controller: 'favorites'}, html: {id: 'delete_favorite'}, method: :delete do |f| %>
+								<%= f.input :shop_id, as: :hidden, input_html: {value: @showshop.id} %>
+								<%= f.button :submit, value: 'Remove from Favorites', class: 'btn btn-danger delete_fav' %>
+							<% end %>
+						</div>
+						<div>
+							<%= simple_form_for @favorite, url: {action: 'create', controller: 'favorites'} do |f| %>
+								<%= f.input :shop_id, as: :hidden, input_html: {value: @showshop.id} %>
+								<%= f.button :submit, value: 'Add to Favorites', class: 'btn btn-success new_fav' %>
+							<% end %>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+
+		<div class='all_comments'>
+			<h2>Comments </h2>
+
+			<div class='comment_form'>
+				<div class='row'>
+					<%= simple_form_for @newcomment, url: {action: 'create', controller: 'comments'} do |f| %>
+						<h4>Add New Comment: </h4>
+						<%= f.input :message, label: false, input_html: {class: 'form-control', placeholder: "Your Comment"}%>
+						<%= f.input :shop_id, as: :hidden, input_html: {value: params[:id]} %>
+						<%= f.button :submit, value: "Comment", class: 'btn btn-primary' %>
+					<% end %>
+				</div>
+			</div>
+
+			<div class='comments'>
+				<% @comments.each do |comment| %>
+				<div class='comment row'>
+					<div class='col-md-1'>
+						<%= link_to( image_tag(comment.user.avatar, class: 'profile_thumbnail'), user_path(comment.user.id) ) %>
+					</div>
+					<div class='col-md-11'>
+						<p><span><%= link_to( comment.user.first_name+' '+comment.user.last_name, user_path(comment.user.id) ) %></span><i> <%= comment.created_at %> </i></p>
+						<p><%= comment.message %></p>
+					</div>
+				</div>
+				<% end %>
+
+			</div>
+
+		</div>
+	</div>	
+</div>
+
+<!-- Registration Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    	<%= render "partials/register" %>
+    </div>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+    	<%= render "partials/login" %>
+    </div>
+  </div>
+</div>
+

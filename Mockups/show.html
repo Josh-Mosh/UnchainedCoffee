@@ -1,0 +1,175 @@
+<!doctype HTML>
+
+<html>
+<head>
+	<title>Add</title>
+		<script type="text/javascript" src='js/jquery.min.js'></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/loginregister.css">
+	<script type="text/javascript" src='js/bootstrap.min.js'></script>
+	<script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false">
+    </script>
+    <link rel="stylesheet" type="text/css" href="css/unchained.css">
+	<link rel="stylesheet" type="text/css" href="css/shop.css">
+	<script type="text/javascript" src='js/map3.js'></script>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+
+			$('.registration').click(function(){
+
+				$('#myModal').modal({remote: 'register.html'});
+			})
+
+			$('.login').click(function(){
+				$('#loginModal').modal({remote: 'login.html'});
+			})
+
+		})
+	</script>
+</head>
+<body>
+
+	<div class='header'>
+		<div class='row'>
+			<div class='col-md-3 header-left'>
+				<img src="img/LOGO.png">
+			</div>
+		</div>	
+	</div>
+
+	<div class='container-fluid top'>
+		<div class='row task'>
+			<div class='col-md-3 task-left'>
+				<ul>
+					<li class='inactive'><a href="index.html">Home</a></li>
+					<li class='inactive'><a href="add.html">Add</a></li>
+					<li class='active'>Shop</li>
+				</ul>
+			</div>
+			<div class='col-md-5 col-md-offset-4 task-right'>
+				<ul>
+					<li id='user_info' class='inactive'>Welcome, Mosh</li>
+					<li class='inactive'><a href='profile.html' class='profile'>Profile</a></li>
+				</ul>
+			</div>
+		</div>
+
+	<div class='container-fluid body'>
+
+		<div class='row shop_info'>
+
+			<div class='col-md-8'>
+
+				<h1 class='name'>Coco Coffee Downtown</h1>
+				<div class='row shop_pics'>
+					<img src="img/shop_pics/shop1.png">
+					<img src="img/shop_pics/shop2.png">
+					<img src="img/shop_pics/shop3.png">
+
+				</div>
+				<h5>Quiet retreat from the everyday hub-bub of downtown Seattle Life.. Will this sentence wrap like it's supposed to? waht if i just keep gooing and going and going and going</h5>
+				<p>Added on <span>01/12/2014</span> by <span><a href="profile.html">Josh Mosh</a></span></p>
+				<img src="img/rating.png">
+				
+				<h4>502 South Street, Seattle, WA. 32352</h4>
+				<a href="#">www.cococoffee.com</a>
+			</div>
+			<div class='col-md-4'>
+				<h3>View on map</h3>
+				<div id='map-canvas3' class='map3'>
+
+				</div>
+			</div>
+		 </div>
+
+		 <div class='add_favorite row'>
+			<div class='add-label col-md-8'>
+				<h3>Want to add this shop to your list of favorites?</h3>
+				<h6>Become a member to keep a favorites list: <a href='#' class='registration'>Register</a></h6>
+			</div>
+			<div class=' col-md-4'>
+				<button class='favorite_button btn btn-lg btn-warning'>Add to Favorites</button>
+			</div>
+		</div>
+
+		<div class='all_comments'>
+			<h2>Comments </h2>
+
+			<div class='comment_form'>
+				<div class='row'>
+					<form>
+						<h4>Add New Comment: </h4>
+						<textarea name='comment' placeholder='Add New Comment' class='form-control'></textarea>
+					</form>
+				</div>
+			</div>
+
+			<div class='comments'>
+				<div class='comment row'>
+					<div class='col-md-1'>
+						<img class='profile_thumbnail' src="img/mosh.jpg">
+					</div>
+					<div class='col-md-11'>
+						<p><span><a href="profile.html"> Josh Mosh</a></span><i> 01/24/2014 12:06 pm </i></p>
+						<p>This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...</p>
+					</div>
+				</div>
+
+				<div class='comment row'>
+					<div class='col-md-1'>
+						<img class='profile_thumbnail' src="img/mosh.jpg">
+					</div>
+					<div class='col-md-11'>
+						<p><span><a href="profile.html"> Josh Mosh</a></span><i> 01/24/2014 12:06 pm </i></p>
+						<p>This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...</p>
+					</div>
+				</div>
+
+				<div class='comment row'>
+					<div class='col-md-1'>
+						<img class='profile_thumbnail' src="img/mosh.jpg">
+					</div>
+					<div class='col-md-11'>
+						<p><span><a href=""> Josh Mosh</a></span><i> 01/24/2014 12:06 pm </i></p>
+						<p>This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...</p>
+					</div>
+				</div>
+
+				<div class='comment row'>
+					<div class='col-md-1'>
+						<img class='profile_thumbnail' src="img/mosh.jpg">
+					</div>
+					<div class='col-md-11'>
+						<p><span><a href="profile.html"> Josh Mosh</a></span><i> 01/24/2014 12:06 pm </i></p>
+						<p>This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...This is the comment content:  I think this is a really great coffee shop.. That is why I added it to this site.  Also I am the only person on this site and it is lonely...</p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>	
+
+<!-- Registration Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    	
+    </div>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    	
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

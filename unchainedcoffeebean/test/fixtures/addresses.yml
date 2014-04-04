@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lon: 1.5
+  lat: 1.5
+  addressable_id: 
+
+two:
+  lon: 1.5
+  lat: 1.5
+  addressable_id: 

@@ -1,0 +1,227 @@
+// Place all the styles related to the CoffeeBeans controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'bootstrap';
+
+.row {
+	margin: 0px;
+}
+
+.col-md-6, .col-md-9, .col-md-3 {
+	padding: 0px;
+}
+
+body {
+	background-image: url('/assets/purty_wood.png'); 
+	background-repeat: repeat;
+	color: black;
+}
+
+.top {
+	margin: 20px;
+	margin-bottom: 0px;
+}
+
+	/*TASK BAR STUFF*/
+	ul {
+		list-style-type: none;
+		margin-bottom: 0px;
+	}
+
+	li {
+		display: inline-block;
+		padding: 10px;
+		border-bottom: none;
+		border-radius: 5px 5px 0 0;
+		font-size: 18px;
+		font-weight: bold;
+	}
+
+	.task, .task a {
+		color: black;
+	}
+
+	.active {
+		background-color: rgba(159, 126, 100, .6);
+	}
+
+	.inactive {
+		background-color: #EAE8DB;
+	}
+
+	.task-right {
+		text-align: right;
+	}
+
+
+.body {
+	background-color: rgba(159, 126, 100, .6);
+	margin: 0px 20px;
+	padding: 20px;
+}
+
+.search-form {
+	margin: 20px 0;
+	border: 1px solid silver;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: #EAE8DB;
+}
+
+	.search-form {
+
+	}
+
+	#address {
+		width: 100%;
+	}
+
+.shop-pic {
+	vertical-align: bottom;
+	max-width: 200px;
+	max-height: 150px;
+}
+
+.map{
+	height: 600px;
+	padding-top: 210px;
+	width: 100%;
+	border: 1px solid silver;
+	display: inline-block;
+}
+
+	.info_window {
+		background-color: grey;
+	}
+
+	.location {
+		height: 20px;
+		width: 20px;
+		margin-left: 537px;
+		border-radius: 25px;
+	}
+
+#activity_div {
+	display: inline-block;
+	border: 1px solid silver;
+	padding: 10px;
+	margin-bottom: 10px;
+	margin-left: 20px;
+	border-radius: 10px;
+	background-color: #EAE8DB;
+	height: 600px;
+	min-width: 200px;
+	vertical-align: top;
+}
+
+	#activity_div h3{
+		padding-bottom: 10px;
+		border-bottom: 2px dashed #333333;
+		margin-bottom: 0px;
+		margin-top: 5px;
+	}
+
+	
+	.show_activities {
+		padding: 5px;
+		overflow: scroll;
+		height: 525px;
+	}
+
+	.activity {
+		border-bottom: 2px dashed #333333;
+		padding: 5px 0px;
+	}
+
+		.activity span {
+			font-style: italic;
+			font-size: 12px;
+		}
+
+.add-form {
+	margin: 20px 40px;
+	border: 1px solid silver;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: #EAE8DB;
+}
+
+	.add-form .add-label, .add-form a {
+		display: inline-block;
+	}
+
+	.add-form .btn {
+		vertical-align: top;
+		margin-top: 5px;
+		width: 200px;
+	}
+
+	.add-form h3 {
+		margin-top: 0px;
+	}
+
+	.add-form .col-md-5 {
+		text-align: center;
+	}
+
+.shops-near {
+	margin: 10px, 20px;
+	border: 1px solid silver;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: #EAE8DB
+}
+
+	.shops {
+		height: 400px;
+		overflow: scroll;
+		border: 2px solid black;
+		padding: 20px;
+	}
+
+	.shop {
+		padding: 20px;
+		border-bottom: 2px dashed #333333;
+	}
+
+		.shop .btn {
+			margin-top: 20px;
+		}
+
+		.shop h3 {
+			margin-top: 0px;
+			color: #444444;
+		}
+
+			.shop a, .shop_address {
+				color: #444444;
+			}
+
+		.shop .col-md-3 {
+			text-align: center;
+		}
+
+		.description {
+			font-weight: normal;
+		}
+
+.btn-primary {
+	background-color: #B3D1FF; 
+}
+
+.btn-success {
+	background-color: #B8CB9B;
+}
+.btn-warning {
+	background-color: #E8C86C;
+}
+
+.btn-danger {
+	background-color: #EBD2CF;
+}
+
+.btn-primary, .btn-success, .btn-warning, .btn-danger {
+	color: #222222;
+	font-weight: bold;
+}

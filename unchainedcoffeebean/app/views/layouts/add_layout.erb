@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unchainedcoffeebean</title>
+  <%= include_gon %>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false">
+    </script>
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+
+  <%= stylesheet_link_tag "coffee_beans", "add", "shop", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jquery.min", "map2", "add", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/pepper-grinder/jquery-ui.css">
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>

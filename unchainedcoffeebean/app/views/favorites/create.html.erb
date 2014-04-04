@@ -1,0 +1,21 @@
+<% if @activity
+	if @activity.user.gender 
+	@gender = @activity.user.gender 
+		if @gender == "Male"
+			@pronoun = 'his'
+		else
+			@pronoun = 'her'
+		end
+	end %>
+	<div class='activity'>
+		<p><span><%= @activity.created_at.to_time.strftime('%B %e at %l:%M %p') %></span></p>
+		<p> <a href="<%= user_path(@activity.user_id) %>"><%= @activity.user.first_name + ' ' + @activity.user.last_name %></a> added <a href="<%= shop_path(@activity.shop_id) %>"><%= @activity.shop.name %></a> to 
+			<% if @pronoun %>
+				<%= @pronoun %>
+			<% else %>
+				his/her
+			<% end %>
+			favorites. 
+		</p>
+	</div>
+<% end %>

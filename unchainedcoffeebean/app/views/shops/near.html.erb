@@ -1,0 +1,57 @@
+<% if @shown_shops %>
+	<% @shown_shops.reverse.each do |shop| %>
+		<div class='shop'>
+			<div class='row'>
+				<div class='col-md-6'>
+					<h3><%= link_to shop.name, shop_path(shop.id) %></h3>
+					<p>Added by: <b><%= link_to shop.user.first_name + ' ' + shop.user.last_name, user_path(User.find(shop.user_id))%></b> on: <i><%= shop.created_at.to_time.strftime('%B %e at %l:%M %p') %></i></p>
+					<p class='description'><%= shop.description %></p>
+					<p class='shop_address'><b><%= shop.address.address %><b></p>
+				</div>
+				<div class='col-md-3'>
+					<% if shop.external_images.any? %>
+						<img class='shop-pic' src="<%= shop.external_images.first.url %>">
+					<% else %>
+						<img class='shop-pic' src="<%= shop.photo %>">
+					<% end %>
+				</div>
+				<div class='col-md-3'>
+					<%= link_to "See More Info", shop_path(shop.id), class: "btn btn-primary" %>
+					<% if session[:user_id] %>
+						<% @favarr = [] %>
+						<% User.find(session[:user_id]).favorites.each do |favorite| %>
+							<% @favarr.push(favorite.shop_id) %>
+						<% end %>
+						<%  if @favarr.include?(shop.id) %>
+							<div>
+								<%= simple_form_for @favorite, url: favorite_path(shop.id), html: {id: 'delete_favorite'}, method: :delete do |f| %>
+									<%= f.input :shop_id, as: :hidden, input_html: {value: shop.id} %>
+									<%= f.button :submit, value: 'Remove from Favorites', class: 'btn btn-danger delete_fav' %>
+								<% end %>
+							</div>
+							<div style='display:none'>
+								<%= simple_form_for @favorite, url: {action: 'create', controller: 'favorites'} do |f| %>
+									<%= f.input :shop_id, as: :hidden, input_html: {value: shop.id} %>
+									<%= f.button :submit, value: 'Add to Favorites', class: 'btn btn-success new_fav' %>
+								<% end %>
+							</div>
+						<% else %>
+							<div>
+								<%= simple_form_for @favorite, url: {action: 'create', controller: 'favorites'} do |f| %>
+									<%= f.input :shop_id, as: :hidden, input_html: {value: shop.id} %>
+									<%= f.button :submit, value: 'Add to Favorites', class: 'btn btn-success new_fav' %>
+								<% end %>
+							</div>
+							<div style='display:none'>
+								<%= simple_form_for @favorite, url: favorite_path(shop.id), html: {id: 'delete_favorite'}, method: :delete do |f| %>
+									<%= f.input :shop_id, as: :hidden, input_html: {value: shop.id} %>
+									<%= f.button :submit, value: 'Remove from Favorites', class: 'btn btn-danger delete_fav' %>
+								<% end %>
+							</div>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	<% end %>
+<% end %>

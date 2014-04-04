@@ -1,0 +1,9 @@
+
+<div class='col-md-6 task-right'>
+	<ul>
+		<li id='user_info' class='active'>Welcome, <%= User.find(session[:user_id]).first_name %></li>
+		<li class='inactive'><%= link_to( "My Profile", user_path(session[:user_id])) %></li>
+		
+		<li class='inactive'><%= link_to "Logout", session_path(session[:user_id]), method: :delete %></li>
+	</ul>
+</div>

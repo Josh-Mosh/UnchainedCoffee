@@ -1,0 +1,16 @@
+.modal-content {
+	background-color: #EAE8DB;
+	margin: 10px;
+}
+
+.modal-header {
+	padding-bottom: 0px;
+	margin: 20px;
+
+}
+
+.modal-body {
+	margin: 20px;
+	border-top: 2px dashed #333333; 
+	border-bottom: 2px dashed #333333; 
+}

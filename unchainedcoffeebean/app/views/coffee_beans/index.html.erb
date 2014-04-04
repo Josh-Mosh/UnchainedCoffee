@@ -1,0 +1,138 @@
+
+<div class='maprefresh' style='display:none'>
+	<form id='maprefresh' action='/near' method='post'>
+		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+		North: <input class='north' type='text' name='north'>
+		South: <input class='south' type='text' name='south'>
+		East: <input class='east' type='text' name='east'>
+		West: <input class='west' type='text' name='west'>
+		<input type='submit'>
+	</form>
+</div>
+
+<div class='container-fluid'>
+
+	<div class='top'>
+		<div class='row task'>
+			<div class='col-md-6 task-left'>
+				<ul>
+					<li class='active'><a href="#">Home</a></li>
+					<li class='inactive'><a href="/shops/new">Add</a></li>
+				</ul>
+			</div>
+			<% if session[:user_id] %>
+				<%= render "partials/loggedin" %>
+			<% else %>
+				<%= render "partials/notloggedin" %>
+			<% end %>
+		</div>
+	</div>
+
+	<div class='body'>
+		<% if session[:user_id] %>
+			<% if @current_user.address %>
+			<p><%= "Your Location: "+  @current_user.address.address %> </p>
+		<% end 
+		end%>
+		
+		<div class='search-form'>
+			<h3>Find chain free coffee shops near you or around the world!</h3>
+			<form class='form-inline mapsearch row' role='form' >
+					<div class='col-md-1'>
+						<label for="location" class='control-label'>Location:</label>
+					</div>
+					<div class='col-md-7'>
+						<input id="address" type='text' name='location' placeholder='Seattle, WA' class='form-control'>
+					</div>
+					<div class='col-md-3'>
+						<input type='submit' value='Search' class='btn btn-primary'>
+					</div>
+			</form>
+		</div>
+
+		<div class='row'>
+			<div class='col-md-9'>
+				<div class='map col-md-9' id='map-canvas'>
+					
+				</div>
+			</div>
+
+			<div class='col-md-3'>
+				<div id='activity_div'>
+					<h3>Recent Activities</h3>
+					<div class='show_activities'>
+						<% if @activities.any?
+							   @activities.reverse.each do |activity| 
+							   if activity.user.gender == 'Male'
+							   	pronoun = 'his'
+							   else
+							   	pronoun = 'her'
+							   end %>
+							<div class='activity'>
+								<p><span><%= activity.created_at.to_time.strftime('%B %e at %l:%M %p') %></span></p>
+								<p>
+									<a href="<%= user_path(activity.user_id) %>"><%= activity.user.first_name + ' ' + activity.user.last_name %></a> added <a href="<%= shop_path(activity.shop_id) %>"><%= activity.shop.name %></a>
+									<% if activity.kind == 'favorite' %>
+										to 
+										<% if pronoun %>
+											<%= pronoun %>
+										<% else %>
+											their
+										<% end %>
+										 favorites.
+									<% elsif activity.kind == 'newshop' %>
+										to our database.
+									<% end %>
+								</p>
+							</div>
+							<% end
+						end %>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class='add-form row'>
+			<div class='add-label col-md-7'>
+				<h3>Know of a great shop we should include?</h3>
+				<h6>Become a member to add your favourite shop: <a href='#' class='registration'>Register</a></h6>
+			</div>
+			<div class='col-md-5'>
+				<% if session[:user_id] %>
+					<a href='shops/new' class='btn btn-lg btn-warning'>Add New Shop</a>
+				<% else %>
+					<a href='shops/new' class='btn btn-lg btn-warning disabled'>Add New Shop</a>
+				<% end %>
+			</div>
+			<div class='tip' style='display:none'>
+				<p>You must be registered to Add new Shops</p>
+			</div>
+		</div>
+
+		<div class='shops-near'>
+			<h2>Shops Near You</h2>
+
+			<div class='shops'>
+			
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Registration Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    	<%= render "partials/register" %>
+    </div>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    	<%= render "partials/login" %>
+    </div>
+  </div>
+</div>

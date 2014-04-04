@@ -1,0 +1,15 @@
+<% if flash[:adderror] %>
+	<script>
+	$(document).ready(function(){
+
+	$(function() {
+		$("#dialog").show();
+	    $( "#dialog" ).dialog();
+	  });
+	})
+  </script>
+<% end %>
+
+<div id="dialog" title="Add Error" style='display:none'>
+  <p>Sorry, You must be logged in to add a new coffee shop</p>
+</div>

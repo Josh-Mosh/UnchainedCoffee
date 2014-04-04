@@ -1,0 +1,5 @@
+<% if @new_activity %>
+	<div class='activity'>
+		<p> <a href="<%= user_path(@new_activity.user_id) %>"><%= @new_activity.user.first_name + ' ' + @new_activity.user.last_name %></a> added <a href="<%= shop_path(@new_activity.shop_id) %>"><%= @new_activity.shop.name %></a> to our database. </p>
+	</div>
+<% end %>

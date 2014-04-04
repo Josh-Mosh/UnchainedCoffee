@@ -1,0 +1,23 @@
+<% if session[:user_id] %>
+
+	<% shop.favorites.each do |favorite| %>
+
+	
+	<% if favorite.user_id == session[:user_id] && favorite.shop_id == shop.id %>
+		<%= simple_form_for @favorite, url: {action: 'destroy', controller: 'favorites'}, method: :delete do |f|%>
+			<%= f.input :shop_id, as: :hidden, input_html: {value: shop.id} %>
+			<%= f.button :submit, value: 'Remove from Favorites', class: 'btn btn-danger' %>
+		<% end %>
+	<% else %>
+		<%= simple_form_for @favorite, url: {action: 'create', controller: 'favorites'} do |f| %>
+			<%= f.input :shop_id, as: :hidden, input_html: {value: shop.id} %>
+			<%= f.button :submit, value: 'Add to Favorites', class: 'btn btn-success' %>
+		<% end %>
+	<% end %>
+	<% end %>
+<% else %>
+	<%= simple_form_for @favorite, url: {action: 'create', controller: 'favorites'} do |f| %>
+	<%= f.input :shop_id, as: :hidden, input_html: {value: shop.id} %>
+	<%= f.button :submit, value: 'Add to Favorites', class: 'btn btn-success' %>
+<% end %>
+<% end %>

@@ -1,0 +1,166 @@
+
+<div class='container-fluid'>
+	<div class='top'>
+		<div class='row task'>
+			<div class='col-md-6 task-left'>
+				<ul>
+					<li class='inactive'><a href="/">Home</a></li>
+					<li class='active'><a href="#">Add</a></li>
+				</ul>
+			</div>
+			<%= render "partials/loggedin" %>
+		</div>
+	</div>
+
+	<div class='body'>
+
+		<div class='new_shop_success' style='display:none'>
+			<h4>You have successfully added a new shop, what would you like to do now?</h4>
+			<%= link_to "<button class='btn btn-primary'>Return Home</button>".html_safe, root_path %>
+			<%= link_to "<button class='btn btn-warning add_another'>Add another coffee shop</button>".html_safe, new_shop_path %>
+		</div>
+
+		<div class=' row add-shop'>
+			<div class='col-md-6 form-left'>
+				<h3>Manually Add A Coffee Shop:</h3>
+				<%= simple_form_for @shop, url: {action: 'create', controller: 'shops'}, html: {id: "top-shop"} do |f| %>
+				<h4>Name of Coffee Shop: </h4>
+				<%= f.input :name, label:false, input_html: {class: 'form-control shop_name', placeholder: "Shop Name"}, autofocus: true %>
+
+				<h4>Address:</h4>
+				<div class='form-group row'>
+					<label for='number' class='col-md-2 control-label'>Number: </label>
+					<div class='col-md-5'>
+						<%= f.input :number, label:false, input_html: {class: 'form-control', id: 'street_number', placeholder: "1234"} %>
+					</div>
+				</div>
+				<div class='form-group row'>
+					<label for='street' class='col-md-2 control-label'>Street: </label>
+					<div class='col-md-5'>
+						<%= f.input :street, label:false, input_html: {class: 'form-control', id: 'route', placeholder: "NW 50th Street"} %>
+					</div>
+				</div>
+				<div class='form-group row'>
+					<label for='city' class='col-md-2 control-label'>City: </label>
+					<div class='col-md-5'>
+						<%= f.input :city, label:false, input_html: {class: 'form-control', id: 'locality', placeholder: "Seattle"} %>
+					</div>
+				</div>
+				<div class='form-group row'>
+					<label for='State' class='col-md-2 control-label'>State: </label>
+					<div class='col-md-4'>
+						<%= f.input :state, label:false, input_html: {class: 'form-control', id: 'administrative_area_level_1', placeholder: "WA"} %>
+					</div>
+				</div>
+				<div class='form-group row'>
+					<label for='zip' class='col-md-2 control-label'>Zip: </label>
+					<div class='col-md-4'>
+						<%= f.input :zip, label:false, input_html: {class: 'form-control', id: 'postal_code', placeholder: "90210"} %>
+					</div>
+				</div>
+				<div class='form-group row'>
+					<label for='country' class='col-md-2 control-label'>Country: </label>
+					<div class='col-md-4'>
+						<%= f.input :cntry, label:false, input_html: {class: 'form-control', id: 'country', placeholder: "United States"} %>
+					</div>
+				</div>
+				
+			</div>
+		
+			<div class='col-md-6 form-right'>
+				<h3>Find Shop With Map:</h3>
+				<div class='map_group'>
+
+					<div class='form-group placesearch'>
+						<input id="pac-input" type='text' name='place' placeholder="Search by Shop Name, Region, or Address" class=' col-md-8 form-control'>
+						<p class='col-md-offset-1'>Click on a marker to add its address information</p>
+					</div>
+
+
+					<div id='map-canvas2' class='map2'>
+
+					</div>
+				</div>
+			</div>
+		<div class='row'>
+			<div class='other_options'>
+				<div class='col-md-6'>
+					<h3>Other Options:</h3>
+					<div class='categories'>
+						<h4>Check All that apply</h4>
+						<div class='row'>
+							<div class='col-md-6'>
+								<%= f.association :categories, as: :check_boxes, label:false %>
+							</div>
+						</div>
+					</div>
+
+					<div class='pricing'>
+						<h4>Pricing</h4>
+						<div class='row'>
+							<div class='col-md-3'>
+								<%= f.input :pricing, collection: ["$", "$$", "$$$", "$$$$"],  as: :radio_buttons, label:false %>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class='col-md-6'>
+					<div class='description'>
+						<h4>Website</h4>
+						<div class='row'>
+							<div class='col-md-12'>
+								<%= f.input :website, label:false, input_html: {class: 'form-control shop_website', placeholder: "Shop Website"} %>
+							</div>
+						</div>
+						<h4>Descripton</h4>
+						<div class='row'>
+							<div class='col-md-12'>
+								<%= f.input :description, as: :text, label:false, input_html: {class: 'form-control', placeholder: "Short Shop Description"} %>
+							</div>
+						</div>
+					</div>
+					<div class='images'>
+						<h4>Upload Some images of this shop</h4>
+						<div class='row'>
+							<div class='col-md-12 photos_div'>
+								<img style='display:none' class='photo_prev' src="/assets/thumbnail-preview.png">
+								<%= f.input :url, input_html: {class: 'form-control photo_url', placeholder: "http://imageurl.png"} %>
+							</div>
+						</div>
+						<div class='row'>
+							<div class='col-md-12 photos_div'>
+								<%= f.input :photo, as: :file %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+
+		<div class='footer'>
+			<input type='submit' value='Add New Shop!' class='btn btn-lg btn-warning'>
+			<a href="/" class='btn btn-lg btn-default'>Back</a>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    	
+    </div>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    	
+    </div>
+  </div>
+</div>
+
