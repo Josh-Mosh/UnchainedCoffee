@@ -1,31 +1,9 @@
 <!doctype HTML>
 
-<div class='header'>
-	<div class='header-left'>
-		<img src="/assets/LOGO.png">
-	</div>
-</div>
-
 <div class='container-fluid'>
-	<div class='top'>
-		<div class='row task'>
-			<div class='col-md-6 task-left'>
-				<ul>
-					<li class='inactive'><a href="/">Home</a></li>
-					<li class='inactive'><a href="/shops/new">Add</a></li>
-					<li class='active'><a href="#">More Info</a></li>
-				</ul>
-			</div>
-			<% if session[:user_id] %>
-				<%= render "partials/loggedin" %>
-			<% else %>
-				<%= render "partials/notloggedin" %>
-			<% end %>
-		</div>
-	</div>
-
+	
 	<div class='body'>
-
+		<div class='body_top'>
 		<div class='row shop_info'>
 
 			<div class='col-md-8'>
@@ -41,7 +19,7 @@
 					<% end %>
 				</div>
 				<h5><%= @showshop.description %></h5>
-				<p>Added on: <span><%= @showshop.created_at.to_time.strftime('%B %e at %l:%M %p %Z') %></span> by 
+				<p>Added on: <i><%= @showshop.created_at.to_time.strftime('%B %e at %l:%M %p %Z') %></i> by 
 					<% if @showshop.user %>
 					<span><%= link_to @showshop.user.first_name + ' ' + @showshop.user.last_name, user_path(@showshop.user.id) %></span>
 					<% else %>
@@ -49,13 +27,13 @@
 					<% end %>
 				</p>
 				<img src="/assets/rating.png">
-				<h4>502 South Street, Seattle, WA. 32352</h4>
+				<h4><%= @showshop.address.address %></h4>
 				<% if @showshop.website.start_with?("http")
 					website = @showshop.website
 				else
 					website = 'http://'+@showshop.website
 				end %>
-				<%= link_to(@showshop.website, website) %>
+				<a href="<%= website %>" target='_blank'><%= website %></a>
 			</div>
 			<div class='col-md-4'>
 				<h3>View on map</h3>
@@ -64,48 +42,8 @@
 				</div>
 			</div>
 		 </div>
-
-		 <div class='add_favorite row'>
-			<div class='add-label col-md-8'>
-				<h3>Want to add this shop to your list of favorites?</h3>
-				<h6>Become a member to keep a favorites list: <a href='#' class='registration'>Register</a></h6>
-			</div>
-			<div class=' col-md-4'>
-				<% if session[:user_id] %>
-					<% favarr = [] %>
-					<% User.find(session[:user_id]).favorites.each do |favorite| %>
-						<% favarr.push(favorite.shop_id) %>
-					<% end %>
-					<%  if favarr.include?(@showshop.id) %>
-						<div>
-							<%= simple_form_for @favorite, url: {action: 'destroy', controller: 'favorites'}, html: {id: 'delete_favorite'}, method: :delete do |f| %>
-								<%= f.input :shop_id, as: :hidden, input_html: {value: @showshop.id} %>
-								<%= f.button :submit, value: 'Remove from Favorites', class: 'btn btn-danger delete_fav' %>
-							<% end %>
-						</div>
-						<div style='display:none'>
-							<%= simple_form_for @favorite, url: {action: 'create', controller: 'favorites'} do |f| %>
-								<%= f.input :shop_id, as: :hidden, input_html: {value: @showshop.id} %>
-								<%= f.button :submit, value: 'Add to Favorites', class: 'btn btn-success new_fav' %>
-							<% end %>
-						</div>
-					<% else %>
-						<div style='display:none'>
-							<%= simple_form_for @favorite, url: {action: 'destroy', controller: 'favorites'}, html: {id: 'delete_favorite'}, method: :delete do |f| %>
-								<%= f.input :shop_id, as: :hidden, input_html: {value: @showshop.id} %>
-								<%= f.button :submit, value: 'Remove from Favorites', class: 'btn btn-danger delete_fav' %>
-							<% end %>
-						</div>
-						<div>
-							<%= simple_form_for @favorite, url: {action: 'create', controller: 'favorites'} do |f| %>
-								<%= f.input :shop_id, as: :hidden, input_html: {value: @showshop.id} %>
-								<%= f.button :submit, value: 'Add to Favorites', class: 'btn btn-success new_fav' %>
-							<% end %>
-						</div>
-					<% end %>
-				<% end %>
-			</div>
-		</div>
+		 </div>
+		 <div class='body_bottom'>
 
 		<div class='all_comments'>
 			<h2>Comments </h2>
@@ -137,7 +75,67 @@
 			</div>
 
 		</div>
+			<div class='add_favorite row'>
+			<div class='add-label col-md-4 col-md-offset-4'>
+				<h3>Want to add this shop to your list of favorites?</h3>
+			
+				<% if session[:user_id] %>
+					<% favarr = [] %>
+					<% User.find(session[:user_id]).favorites.each do |favorite| %>
+						<% favarr.push(favorite.shop_id) %>
+					<% end %>
+					<%  if favarr.include?(@showshop.id) %>
+						<div>
+							<%= simple_form_for @favorite, url: {action: 'destroy', controller: 'favorites'}, html: {id: 'delete_favorite'}, method: :delete do |f| %>
+								<%= f.input :shop_id, as: :hidden, input_html: {value: @showshop.id} %>
+								<%= f.button :submit, value: 'Remove from Favorites', class: 'btn btn-default delete_fav' %>
+							<% end %>
+						</div>
+						<div style='display:none'>
+							<%= simple_form_for @favorite, url: {action: 'create', controller: 'favorites'} do |f| %>
+								<%= f.input :shop_id, as: :hidden, input_html: {value: @showshop.id} %>
+								<%= f.button :submit, value: 'Add to Favorites', class: 'btn btn-success new_fav' %>
+							<% end %>
+						</div>
+					<% else %>
+						<div style='display:none'>
+							<%= simple_form_for @favorite, url: {action: 'destroy', controller: 'favorites'}, html: {id: 'delete_favorite'}, method: :delete do |f| %>
+								<%= f.input :shop_id, as: :hidden, input_html: {value: @showshop.id} %>
+								<%= f.button :submit, value: 'Remove from Favorites', class: 'btn btn-default delete_fav' %>
+							<% end %>
+						</div>
+						<div>
+							<%= simple_form_for @favorite, url: {action: 'create', controller: 'favorites'} do |f| %>
+								<%= f.input :shop_id, as: :hidden, input_html: {value: @showshop.id} %>
+								<%= f.button :submit, value: 'Add to Favorites', class: 'btn btn-success new_fav' %>
+							<% end %>
+						</div>
+					<% end %>
+				<% else %>
+				<h6>Become a member to keep a favorites list</h6>
+				<a href='#' class='registration btn btn-success'>Register</a>
+				<% end %>
+			</div>
+		</div>
+		</div>
 	</div>	
+</div>
+
+<div class='top'>
+	<div class='row task'>
+		<div class='col-md-6 task-left'>
+			<ul>
+				<a href="/"><li class='inactive'>Home</li></a>
+				<a href="/shops/new"><li class='inactive'>Add</li></a>
+				<a href="#"><li class='active'>More Info</li></a>
+			</ul>
+		</div>
+		<% if session[:user_id] %>
+			<%= render "partials/loggedin" %>
+		<% else %>
+			<%= render "partials/notloggedin" %>
+		<% end %>
+	</div>
 </div>
 
 <!-- Registration Modal -->

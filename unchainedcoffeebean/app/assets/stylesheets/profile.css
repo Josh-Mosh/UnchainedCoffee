@@ -2,12 +2,11 @@
 	padding: 0px;
 }
 
-.profile_info {
-	margin: 20px 10px;
+.profile_info, .edit_profile {
+	margin: 20px 0px;
 	margin-left: 0px;
 	border: 1px solid silver;
 	padding: 20px;
-	border-radius: 10px;
 	background-color: #EAE8DB;
 	overflow: scroll;
 }
@@ -29,7 +28,6 @@
 	margin-right: 0px; 
 	border: 1px solid silver;
 	padding: 20px;
-	border-radius: 10px;
 	background-color: #EAE8DB;
 
 }
@@ -44,10 +42,8 @@
 	}
 
 .all_user_activities {
-	border: 1px solid silver;
 	padding: 20px;
-	border-radius: 10px;
-	background-color: #EAE8DB;
+	background-color: #C79A60;
 }
 
  	.all_user_activities h2 {

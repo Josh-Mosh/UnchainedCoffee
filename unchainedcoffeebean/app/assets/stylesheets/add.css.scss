@@ -9,10 +9,6 @@ ul {
 }
 
 .add-shop{
-	border: 1px solid silver;
-	border-radius: 10px;
-	padding: 20px;
-	margin: 20px 0px;
 	background-color: #EAE8DB;
 }
 
@@ -26,6 +22,7 @@ ul {
 	}
 
 	.form-left, .form-right {
+		padding-top: 0px;
 		padding: 20px;
 	}
 
@@ -85,23 +82,57 @@ ul {
 	display: inline-block;
 }
 
-.btn-primary {
-	background-color: #B3D1FF; 
+.new_shop_error_div {
+	padding: 10px;
+	background-color: pink;
+	color: red;
+	margin-left: 20px;
+	border-radius: 20px;
+	border: 2px solid darkred;
+	display: inline-block;
 }
 
-.btn-success {
-	background-color: #B8CB9B;
+.footer {
+	float: right;
 }
+
+.btn-primary {
+	background-color: #6C4C2B; 
+	border: 1px solid #523017;
+}
+	.btn-primary:hover {
+		background-color: #523017;
+		border-color: #201309;
+	}
+
+.btn-success {
+	background-color: #64574A;
+	border-color: #222222;
+}
+
+	.btn-success:hover {
+		background-color: #444444;
+		border-color: #111111;
+	}
+
 .btn-warning {
 	background-color: #E8C86C;
 }
 
-.btn-danger {
-	background-color: #EBD2CF;
+.btn-default {
+	font-weight: bold;
+	background-color: white;
+	color: #523017;
+	border-color: #523017;
 }
 
+	.btn-default:hover {
+		background-color: #DDDDDD;
+		color: #523017;
+		border-color:#201309;
+	}
+
 .btn-primary, .btn-success, .btn-warning, .btn-danger {
-	color: #222222;
-	font-weight: bold;
+	color: white;
 }
 

@@ -19,8 +19,6 @@ class ShopsController < ApplicationController
     @shop = @user.shops.create(shop_params)
     @address = Address.new(address: address)
     @shop.address = @address
-    
-    puts "\n\n\n\n\n\nShop Info", @shop.inspect
 
     @shop.save
     if @shop.save
@@ -30,9 +28,9 @@ class ShopsController < ApplicationController
       if shop[:url]
         @shop.external_images.create(url: params[:shop][:url])
       end
+      render text: "success"
     else
-      flash.now[:errors] = @shop.errors.full_messages
-      render text: "error"
+      render json: @shop.errors.full_messages
     end
   end
 

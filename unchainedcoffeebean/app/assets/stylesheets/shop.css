@@ -1,9 +1,7 @@
 
+
 .shop_info {
 	margin: 0px;
-	border: 1px solid silver;
-	padding: 20px;
-	border-radius: 10px;
 	background-color: #EAE8DB;
 }
 
@@ -22,6 +20,7 @@
 
 	.name {
 		margin-top: 0px;
+		padding-bottom: 10px;
 	}
 
 	.shop_pics img {
@@ -35,12 +34,15 @@
 	}
 
 .add_favorite {
-	margin: 20px 50px;
-	border: 1px solid silver;
-	padding: 10px;
-	border-radius: 10px;
-	background-color: #EAE8DB
+	padding: 50px;
+	background-color: #1D1108;
+	color: #9D6D41;
+	text-align: center;
 }
+
+	.add-label {
+		text-align: center;
+	}
 	
 	.add_favorite h3 {
 		margin-top: 5px;
@@ -50,16 +52,13 @@
 		text-align: center;
 	}
 
-	.add_favorite .delete_fav {
+	.add_favorite .delete_fav, .add_favorite .new_fav {
 		margin-top: 15px;
 	}
 
 .all_comments {
 	margin: 0px;
-	border: 1px solid silver;
 	padding: 20px;
-	border-radius: 10px;
-	background-color: #EAE8DB;
 	max-height: 640px;
 }
 

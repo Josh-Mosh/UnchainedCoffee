@@ -13,17 +13,52 @@
 }
 
 body {
-	background-image: url('/assets/purty_wood.png'); 
+	/*background-image: url('/assets/purty_wood.png'); */
+	background-color: #64574A;
 	background-repeat: repeat;
-	color: black;
+	color: #523017;
 }
 
+a {
+	color: #333333;
+}
+
+a:hover {
+	color: #111111;
+}
+
+
 .top {
-	margin: 20px;
 	margin-bottom: 0px;
+	top: 0;
+	position: fixed;
+	width: 100%;
 }
 
 	/*TASK BAR STUFF*/
+
+	.top h1 {
+		margin: 0px;
+	}
+
+		.top .title {
+			padding: 0px;
+			padding-top: 5px;
+			vertical-align: bottom;
+		}
+
+		.top span.unchained {
+			color: #935F2F;
+		}
+
+		.top span.coffee {
+			color: white;
+		}
+
+		.top span.bean {
+			color: #C79A60;
+		}
+
 	ul {
 		list-style-type: none;
 		margin-bottom: 0px;
@@ -33,22 +68,29 @@ body {
 		display: inline-block;
 		padding: 10px;
 		border-bottom: none;
-		border-radius: 5px 5px 0 0;
 		font-size: 18px;
 		font-weight: bold;
 	}
 
-	.task, .task a {
-		color: black;
+	.task {
+		background-color: #201309;
+		padding: 10px;
+		padding-right: 40px;
 	}
 
 	.active {
-		background-color: rgba(159, 126, 100, .6);
+		border-bottom: 2px solid #935F2F;
+		color: white;
 	}
 
-	.inactive {
-		background-color: #EAE8DB;
+	.inactive, #user_info {
+		color: #935F2F;
 	}
+
+		.inactive:hover {
+			color: white;
+			border-bottom: 2px solid #935F2F;
+		}
 
 	.task-right {
 		text-align: right;
@@ -56,21 +98,28 @@ body {
 
 
 .body {
-	background-color: rgba(159, 126, 100, .6);
-	margin: 0px 20px;
-	padding: 20px;
+	background-color: #9D6D41;
+	/*padding: 100px 40px;*/
 }
+	
+	.body_top {
+		padding: 80px 40px;
+		padding-bottom: 20px;
+		background-color: #EAE8DB;
+	}
+
+	.body_bottom {
+		background-color: #C79A60;
+	}
 
 .search-form {
-	margin: 20px 0;
-	border: 1px solid silver;
-	padding: 10px;
-	border-radius: 10px;
+	margin-bottom: 20px;
 	background-color: #EAE8DB;
+	width: 100%;
 }
 
-	.search-form {
-
+	.search-form h3 {
+		margin-top: 0px;
 	}
 
 	#address {
@@ -87,7 +136,7 @@ body {
 	height: 600px;
 	padding-top: 210px;
 	width: 100%;
-	border: 1px solid silver;
+	border: 1px solid #64574A;
 	display: inline-block;
 }
 
@@ -104,13 +153,13 @@ body {
 
 #activity_div {
 	display: inline-block;
-	border: 1px solid silver;
+	border-left: 2px solid #64574A;
 	padding: 10px;
+	padding: 0px 10px 2px 20px;
 	margin-bottom: 10px;
 	margin-left: 20px;
-	border-radius: 10px;
 	background-color: #EAE8DB;
-	height: 600px;
+	height: 100%;
 	min-width: 200px;
 	vertical-align: top;
 }
@@ -119,14 +168,14 @@ body {
 		padding-bottom: 10px;
 		border-bottom: 2px dashed #333333;
 		margin-bottom: 0px;
-		margin-top: 5px;
+		margin-top: 0px;
 	}
 
 	
 	.show_activities {
 		padding: 5px;
 		overflow: scroll;
-		height: 525px;
+		height: 675px;
 	}
 
 	.activity {
@@ -140,14 +189,13 @@ body {
 		}
 
 .add-form {
-	margin: 20px 40px;
-	border: 1px solid silver;
-	padding: 10px;
-	border-radius: 10px;
-	background-color: #EAE8DB;
+	padding: 100px;
+	background-color: #201309;
+	text-align: center;
+	color: #9D6D41;
 }
 
-	.add-form .add-label, .add-form a {
+	.add-form .add-label {
 		display: inline-block;
 	}
 
@@ -155,6 +203,10 @@ body {
 		vertical-align: top;
 		margin-top: 5px;
 		width: 200px;
+	}
+
+	.add-form .register_link {
+		color: #666666;
 	}
 
 	.add-form h3 {
@@ -166,18 +218,21 @@ body {
 	}
 
 .shops-near {
-	margin: 10px, 20px;
-	border: 1px solid silver;
-	padding: 10px;
-	border-radius: 10px;
-	background-color: #EAE8DB
-}
+	padding: 10px 40px;
+	width: 100%;
+	color: #201309;
+}	
+	.shops-near h2 {
+		margin-top: 10px;
+		margin-bottom: 20px;
+	}
 
 	.shops {
-		height: 400px;
+		height: 600px;
 		overflow: scroll;
-		border: 2px solid black;
+		border: 2px solid #64574A;
 		padding: 20px;
+		background-color: #9D6D41;
 	}
 
 	.shop {
@@ -189,12 +244,15 @@ body {
 			margin-top: 20px;
 		}
 
-		.shop h3 {
-			margin-top: 0px;
-			color: #444444;
+		.shop h3 a {
+			color: #201309;
 		}
 
-			.shop a, .shop_address {
+		.shop h3 {
+			margin-top: 0px;
+		}
+
+			.shop_address {
 				color: #444444;
 			}
 
@@ -207,21 +265,46 @@ body {
 		}
 
 .btn-primary {
-	background-color: #B3D1FF; 
+	background-color: #6C4C2B; 
+	border: 1px solid #523017;
 }
+	.btn-primary:hover {
+		background-color: #523017;
+		border-color: #201309;
+	}
 
 .btn-success {
-	background-color: #B8CB9B;
+	background-color: #64574A;
+	border-color: #222222;
 }
+
+	.btn-success:hover {
+		background-color: #444444;
+		border-color: #111111;
+	}
+
 .btn-warning {
 	background-color: #E8C86C;
 }
 
-.btn-danger {
-	background-color: #EBD2CF;
+.btn-default {
+	font-weight: bold;
+	background-color: white;
+	color: #523017;
+	border-color: #523017;
 }
 
+	.btn-default:hover {
+		background-color: #DDDDDD;
+		color: #523017;
+		border-color:#201309;
+	}
+
 .btn-primary, .btn-success, .btn-warning, .btn-danger {
-	color: #222222;
-	font-weight: bold;
+	color: white;
+}
+
+.ui-dialog {
+	background-color: blue;
+	color: white;
 }

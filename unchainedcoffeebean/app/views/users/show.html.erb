@@ -1,59 +1,73 @@
 
 <div class='container-fluid'>
-	
-	<div class='top'>
-		<div class='row task'>
-			<div class='col-md-6 task-left'>
-				<ul>
-					<li class='inactive'><a href="/">Home</a></li>
-					<li class='inactive'><a href="/shops/new">Add</a></li>
-				</ul>
-			</div>
-			<% if session[:user_id] %>
-				<div class='col-md-6 task-right'>
-					<ul>
-						<li id='user_info' class='inactive'>Welcome, <%= User.find(session[:user_id]).first_name %></li>
-						<% if @current_user.id == @showuser.id %>
-							<%= link_to( "<li class='active'>My Profile</li>".html_safe, user_path(session[:user_id])) %>
-						<% else %>
-							<%= link_to( "<li class='inactive'>My Profile</li>".html_safe, user_path(session[:user_id])) %>
-						<% end %>
-
-						<li class='inactive'><a href="/logout">Logout</a>
-					</ul>
-				</div>
-			<% else %>
-				<%= render "partials/notloggedin" %>
-			<% end %>
-		</div>
-	</div>
 
 <div class='body'>
+	<div class='body_top'>
+		<% if @current_user %>
+			<button id='edit_profile' class='btn btn-default'>Edit</button>
+			<button id='done_editing_profile' class='btn btn-primary' style='display:none'>Done</button>
+		<% end %>
 	<div class='row'>
 
-		<div class='col-md-6'>
-			<div class='profile_info'>
+		<div class='col-md-6 profile_info'>
+			<div class='row'>
+				<div class='col-md-6'>
+					<img class='profile_pic' src="<%= @showuser.avatar %>">
+				</div>
+				<div class='col-md-6'>
+					<h1 class='name'><%= @showuser.first_name+' '+@showuser.last_name %></h1>
+					<p>Birthday:</p>
+					<% if @showuser.birthdate %>
+						<h3><%= @showuser.birthdate.to_time.strftime('%b %e, %Y') %></h3>
+					<% end %>
+						<p>Location:</p>
+					<% if @showuser.address %>
+						<h3><%= @showuser.address.address %></h3>
+					<% end %>
+					<% if @showuser.bio %>
+						<p><b>Bio:</b></p>
+						<p><%= @showuser.bio %></p>
+					<% end %>
+				</div>
+			</div>
+		</div>
+
+		<div class='col-md-6 edit_profile' style='display:none'>
 				<div class='row'>
 					<div class='col-md-6'>
 						<img class='profile_pic' src="<%= @showuser.avatar %>">
 					</div>
 					<div class='col-md-6'>
-						<h1 class='name'><%= @showuser.first_name+' '+@showuser.last_name %></h1>
-						<p>Birthday:</p>
-						<% if @showuser.birthdate %>
-							<h3><%= @showuser.birthdate.to_time.strftime('%b %e, %Y') %></h3>
-						<% end %>
-							<p>Location:</p>
-						<% if @showuser.address %>
-							<h3><%= @showuser.address.address %></h3>
-						<% end %>
-						<% if @showuser.bio %>
-							<p><b>Bio:</b></p>
-							<p><%= @showuser.bio %></p>
+						<% if @current_user %>
+							
+							<%= simple_form_for @current_user, url: {action: 'update', controller: 'users'}, method: :put do |f|%>
+								<%= f.input :first_name, label:false, input_html: {class: 'form-control', value: @showuser.first_name} %>
+								<%= f.input :last_name, label:false, input_html: {class: 'form-control', value: @showuser.last_name} %>
+								<p>Birthday:</p>
+								<% if @showuser.birthdate
+									user_bday = @showuser.birthdate
+								   else
+									user_bday = ''
+								   end %>
+								<%= f.input :birthdate, label:false, input_html: {class: 'form-control', value: user_bday } %>
+								<% if @showuser.address
+									user_location = @showuser.address.address %>
+								<% else
+									user_location = ''
+								   end %>
+								   <p>Location:</p>
+								<%= f.input :address, label:false, input_html: {class: 'form-control', value: user_location } %>
+								<p><b>Bio:</b></p>
+								<% if @showuser.bio
+										user_bio = @showuser.bio
+									else
+										user_bio = ''
+									end %>
+								<%= f.input :bio, label:false, input_html: {class: 'form-control', value: user_bio } %>
+							<% end %>
 						<% end %>
 					</div>
 				</div>
-			</div>
 		</div>
 
 		<div class='col-md-6'>
@@ -66,18 +80,19 @@
 								<% @showuser.favorites.each do |favorite| %>
 								<tr>
 									<td><h4><%= link_to favorite.shop.name, shop_path(favorite.shop_id) %></h4></td>
-									<td><h4><%= favorite.shop.address.address %></h4></td>
+									<td><h5><%= favorite.shop.address.address %></h5></td>
+									<td><p><%= favorite.created_at.to_time.strftime('%B %e') %></p></td>
 								</tr>
 								<% end %>
 							<% end %>
-
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	</div>
+	<div class='body_bottom'>
 	<div class='row all_user_activities'>
 		<h2><%= @showuser.first_name %>'s Recent Activity</h2>
 		
@@ -100,7 +115,35 @@
 			</div>
 		</div>
 	</div>
+	</div>
 </div>
+
+<div class='top'>
+		<div class='row task'>
+			<div class='col-md-6 task-left'>
+				<ul>
+					<a href="/"><li class='inactive'>Home</li><a href="/shops/new">
+					<a href="/shops/new"><li class='inactive'>Add</li></a>
+				</ul>
+			</div>
+			<% if session[:user_id] %>
+				<div class='col-md-6 task-right'>
+					<ul>
+						<li id='user_info'>Welcome, <%= User.find(session[:user_id]).first_name %></li>
+						<% if @current_user.id == @showuser.id %>
+							<%= link_to( "<li class='active'>My Profile</li>".html_safe, user_path(session[:user_id])) %>
+						<% else %>
+							<%= link_to( "<li class='inactive'>My Profile</li>".html_safe, user_path(session[:user_id])) %>
+						<% end %>
+
+						<a href="/logout"><li class='inactive'>Logout</li></a>
+					</ul>
+				</div>
+			<% else %>
+				<%= render "partials/notloggedin" %>
+			<% end %>
+		</div>
+	</div>
 
 <!-- Registration Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

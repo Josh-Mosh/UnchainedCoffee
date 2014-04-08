@@ -101,5 +101,30 @@ $(document).ready(function(){
 		$('.show_activities').prepend(data);
 	})
 
+/// PROFILE PAGE STUFF ///
+	$(document).on('click', '#edit_profile', function(){
+		$(this).hide();
+		$('#done_editing_profile').show();
+		$('.edit_profile').show();
+		$('.profile_info').hide();
+	})
+
+	$(document).on('click', '#done_editing_profile', function(){
+		$('.edit_user').submit();
+		$(this).hide();
+		$('#edit_profile').show();
+		$('.edit_profile').hide();
+		$('.profile_info').show();
+	})
+
+	$(document).on('submit', '.edit_user', function(){
+		$.post($(this).attr('action'),
+		$(this).serialize(),
+		function(data){
+			console.log(data);
+		})
+	    return false;
+	})
+
 })
 

@@ -1,24 +1,16 @@
 
 <div class='container-fluid'>
-	<div class='top'>
-		<div class='row task'>
-			<div class='col-md-6 task-left'>
-				<ul>
-					<li class='inactive'><a href="/">Home</a></li>
-					<li class='active'><a href="#">Add</a></li>
-				</ul>
-			</div>
-			<%= render "partials/loggedin" %>
-		</div>
-	</div>
 
 	<div class='body'>
+		<div class='body_top'>
 
 		<div class='new_shop_success' style='display:none'>
 			<h4>You have successfully added a new shop, what would you like to do now?</h4>
 			<%= link_to "<button class='btn btn-primary'>Return Home</button>".html_safe, root_path %>
 			<%= link_to "<button class='btn btn-warning add_another'>Add another coffee shop</button>".html_safe, new_shop_path %>
 		</div>
+
+		<div class='new_shop_error_div' style='display:none'></div>
 
 		<div class=' row add-shop'>
 			<div class='col-md-6 form-left'>
@@ -137,15 +129,27 @@
 				</div>
 			</div>
 		</div>
-		</div>
-
 		<div class='footer'>
-			<input type='submit' value='Add New Shop!' class='btn btn-lg btn-warning'>
+			<input type='submit' value='Add New Shop!' class='btn btn-lg btn-primary'>
 			<a href="/" class='btn btn-lg btn-default'>Back</a>
 			<% end %>
 		</div>
+		</div>
+		</div>
 	</div>
 </div>
+
+<div class='top'>
+		<div class='row task'>
+			<div class='col-md-6 task-left'>
+				<ul>
+					<a href="/"><li class='inactive'>Home</li></a>
+					<a href="#"><li class='active'>Add</li></a>
+				</ul>
+			</div>
+			<%= render "partials/loggedin" %>
+		</div>
+	</div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">

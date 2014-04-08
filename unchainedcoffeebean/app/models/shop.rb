@@ -19,6 +19,8 @@ class Shop < ActiveRecord::Base
 
   validates :name, presence: true
   validates :address, presence: true
+  validates :street, presence: true
+  validates :city, presence: true
   validates :pricing, presence: true
   validates :description, presence: true
 
